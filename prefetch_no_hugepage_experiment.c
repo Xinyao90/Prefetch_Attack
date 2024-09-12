@@ -11,7 +11,7 @@
 void memory_access_with_prefetch(volatile char *buffer, size_t size) {
     size_t step = 64; // Cache line size.
     for (size_t i = 0; i < size; i += step) {
-        // _mm_prefetch(&buffer[i], _MM_HINT_T0);  // Use PREFETCHT0 for L1 cache.
+        _mm_prefetch(&buffer[i], _MM_HINT_T0);  // Use PREFETCHT0 for L1 cache.
         buffer[i] = (char)(i % 256);            // Access the memory.
     }
 }
@@ -22,7 +22,7 @@ double measure_access_time(volatile char *buffer, size_t size) {
     double total_time = 0.0;
 
     for (int i = 0; i < NUM_ACCESSES; i++) {
-        // _mm_prefetch(&buffer[(i * 64) % size], _MM_HINT_NTA);  // Use PREFETCHNTA for non-temporal data.
+        _mm_prefetch(&buffer[(i * 64) % size], _MM_HINT_NTA);  // Use PREFETCHNTA for non-temporal data.
         start = __rdtsc(); // Read Time-Stamp Counter.
         buffer[(i * 64) % size]++; // Simulate memory access.
         end = __rdtsc();
