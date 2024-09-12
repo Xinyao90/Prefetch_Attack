@@ -40,6 +40,14 @@ sudo mount -t hugetlbfs nodev /mnt/hugepages
 gcc -o prefetch_hugepage_experiment prefetch_hugepage_experiment.c -O2 -lrt -march=native
 sudo ./prefetch_hugepage_experiment
 ```
+## Observing and Measuring Results:
+
+**Performance Counters**: Use perf to measure cache misses, prefetcher events, and TLB misses:
+
+`sudo perf stat -e L1-dcache-load-misses,L1-dcache-loads,dTLB-load-misses,dTLB-loads ./prefetch_hugepage_experiment
+`
+
+`sudo perf stat -e cache-references,cache-misses,LL-prefetches ./prefetch_hugepage_experiment
 
 ## Steps to Disable Huge Pages on Linux:
 ### Clear Huge Pages Allocation:
@@ -89,9 +97,9 @@ To avoid any possible contamination from previous runs, recompile your program:
 
 **Performance Counters**: Use perf to measure cache misses, prefetcher events, and TLB misses:
 
-`sudo perf stat -e L1-dcache-load-misses,L1-dcache-loads,dTLB-load-misses,dTLB-loads ./prefetch_hugepage_experiment
+`sudo perf stat -e L1-dcache-load-misses,L1-dcache-loads,dTLB-load-misses,dTLB-loads ./prefetch_no_hugepage
 `
 
-`sudo perf stat -e cache-references,cache-misses,LL-prefetches ./prefetch_hugepage_experiment
+`sudo perf stat -e cache-references,cache-misses,LL-prefetches ./prefetch_no_hugepage
 `
 
