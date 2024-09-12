@@ -32,8 +32,8 @@ This output will show information such as:
 ### Enabling Huge Pages on Linux:
 ```
 sudo sh -c 'echo 512 > /proc/sys/vm/nr_hugepages'
-mkdir -p /mnt/hugepages
-mount -t hugetlbfs nodev /mnt/hugepages
+sudo mkdir -p /mnt/hugepages
+sudo mount -t hugetlbfs nodev /mnt/hugepages
 ```
 ### Compiling and Running the Experiment:
 ```
