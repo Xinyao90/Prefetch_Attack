@@ -27,7 +27,12 @@ This output will show information such as:
 ### 5. Use the lscpu
 `lscpu | grep -i page
 `
-## Steps to Enable Huge Pages on Linux:
+## Disable Hardware Prefetchers
+
+The command below disables all four prefetchers on all cores## Steps to Enable Huge Pages on Linux:
+```
+sudo wrmsr -a 0x1a4 0xf
+```
 
 ### Enabling Huge Pages on Linux:
 ```
