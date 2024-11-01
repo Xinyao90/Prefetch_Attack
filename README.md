@@ -34,11 +34,12 @@ The command below disables all four prefetchers on all cores## Steps to Enable H
 sudo wrmsr -a 0x1a4 0xf
 ```
 
-## Steps to Enable Huge Pages on Linux:
+## Steps to Enable and Verify Huge Pages on Linux:
 ```
 sudo sh -c 'echo 512 > /proc/sys/vm/nr_hugepages'
 sudo mkdir -p /mnt/hugepages
 sudo mount -t hugetlbfs nodev /mnt/hugepages
+grep -i huge /proc/meminfo
 ```
 ### Compiling and Running the Experiment:
 ```
