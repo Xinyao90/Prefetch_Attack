@@ -55,9 +55,9 @@ sudo perf stat -e L1-dcache-load-misses,L1-dcache-loads,dTLB-load-misses,dTLB-lo
 
 `sudo perf stat -e cache-references,cache-misses,LL-prefetches ./prefetch_hugepage_experiment
 `
-`
+```
 perf stat -e dTLB-load-misses,iTLB-load-misses,cache-misses ./sender
-`
+```
 ## Steps to Disable Huge Pages on Linux:
 ### Clear Huge Pages Allocation:
 
